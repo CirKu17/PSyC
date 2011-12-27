@@ -1,0 +1,5 @@
+    <target id="[% target %]" >
+        <passphrase> [% passphrase %] </passphrase>
+    </target>
+        
+     
