@@ -37,11 +37,16 @@ open PWSTORAGE_ITEM, "pwstorage.xml" or die $! ;
     
 close (PWSTORAGE_ITEM) ;
 
-open PWSTORAGE_DB, "+>pwstorage_db.xml" or die $! ;
+open PWSTORAGE_DB, "+<pwstorage_db.xml" or die $! ;
 
-    print PWSTORAGE_DB "<pwstorage>\n\n";
-    print PWSTORAGE_DB @pwstorage_xml_content ;
-    print PWSTORAGE_DB "\n</pwstorage>";
+    my @lines = <PWSTORAGE_DB> ;
+    splice @lines, 3, 0, @pwstorage_xml_content ;
+   
+close (PWSTORAGE_DB) ;
+
+open PWSTORAGE_DB, ">pwstorage_db.xml" or die $! ;
+
+    print PWSTORAGE_DB @lines ;
    
 close (PWSTORAGE_DB) ;
 
