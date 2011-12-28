@@ -1,6 +1,6 @@
 PSyC (Passphrases Synchronization CLI) is meant to store an XML password database protected with a PGP key and synchronize it with Dropbox.
 
-Is written in perl (using the Template Toolkit) and has a CLI (zsh).
+Is written in perl (using the Template Toolkit) and the CLI is managed by zsh.
 
 =======
 Aliases

@@ -4,13 +4,12 @@ use strict;
 use warnings;
 use Template;
 
-my $pwstorage_txt = $ARGV[0] ;
-
 print "
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Adding a new item to password db
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ";
+
 print "target: " ;
 chomp( my $target = <STDIN> );
 print "passphrase: ";
@@ -47,6 +46,7 @@ open PWSTORAGE_DB, "+>pwstorage_db.xml" or die $! ;
 close (PWSTORAGE_DB) ;
 
 print "\t[*] Done\n";
+
 print "Encrypting...\n";
 
 exit (0);
