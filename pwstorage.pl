@@ -15,6 +15,7 @@ chomp( my $target = <STDIN> );
 print "passphrase: ";
 chomp(my $passphrase = <STDIN> );
 
+&fix_encoding;
 
 my $tt = Template->new() ;
 my $input = 'pwstorage.tt';
@@ -44,6 +45,7 @@ open PWSTORAGE_DB, "+<pwstorage_db.xml" or die $! ;
    
 close (PWSTORAGE_DB) ;
 
+
 open PWSTORAGE_DB, ">pwstorage_db.xml" or die $! ;
 
     print PWSTORAGE_DB @lines ;
@@ -56,7 +58,19 @@ print "Encrypting...\n";
 
 exit (0);
 
+sub fix_encoding {
 
+my %ESCAPES = (
+    '&' => '&amp;',
+    '<' => '&lt;',
+    '>' => '&gt;',
+    '"' => '&quot;',
+);
+
+$passphrase =~ s/([&<>"])/$ESCAPES{$1}/ge;
+$target =~ s/([&<>"])/$ESCAPES{$1}/ge;
+
+}
 
 
 
