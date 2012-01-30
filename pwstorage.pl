@@ -15,7 +15,6 @@ chomp( my $target = <STDIN> );
 print "passphrase: ";
 chomp(my $passphrase = <STDIN> );
 
-&fix_encoding;
 
 my $tt = Template->new() ;
 my $input = 'pwstorage.tt';
@@ -38,39 +37,32 @@ open PWSTORAGE_ITEM, "pwstorage.xml" or die $! ;
     
 close (PWSTORAGE_ITEM) ;
 
-open PWSTORAGE_DB, "+<pwstorage_db.xml" or die $! ;
+unlink ('pwstorage.xml') or die $!;
 
-    my @lines = <PWSTORAGE_DB> ;
-    splice @lines, 3, 0, @pwstorage_xml_content ;
-   
-close (PWSTORAGE_DB) ;
+chdir ("/tmp") or die "$!";
 
+opendir (DIR, ".") or die "$!";
 
-open PWSTORAGE_DB, ">pwstorage_db.xml" or die $! ;
+    open PWSTORAGE_DB, "+<pwstorage_db.xml" or die $! ;
 
-    print PWSTORAGE_DB @lines ;
-   
-close (PWSTORAGE_DB) ;
+	my @lines = <PWSTORAGE_DB> ;
+	splice @lines, 3, 0, @pwstorage_xml_content ;
+      
+    close (PWSTORAGE_DB) ;
+
+    open PWSTORAGE_DB, ">pwstorage_db.xml" or die $! ;
+
+	print PWSTORAGE_DB @lines ;
+      
+    close (PWSTORAGE_DB) ;
+
+close DIR;
 
 print "\t[*] Done\n";
 
-print "Encrypting...\n";
-
 exit (0);
 
-sub fix_encoding {
 
-my %ESCAPES = (
-    '&' => '&amp;',
-    '<' => '&lt;',
-    '>' => '&gt;',
-    '"' => '&quot;',
-);
-
-$passphrase =~ s/([&<>"])/$ESCAPES{$1}/ge;
-$target =~ s/([&<>"])/$ESCAPES{$1}/ge;
-
-}
 
 
 
