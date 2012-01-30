@@ -22,7 +22,7 @@ function psyc-add() {
     gpg --yes -o /tmp/pwstorage_db.xml -d $PSYCPATH/pwstorage_db.xml.gpg
     $PSYCPATH
     perl pwstorage.pl
-    gpg --yes -o $PSYCPATH/pwstorage_db.xml.gpg -e -R CirKu17 /tmp/pwstorage_db.xml
+    gpg --yes -o $PSYCPATH/pwstorage_db.xml.gpg -e -R $PSYCHOPATH /tmp/pwstorage_db.xml
     $OLDPWD
     shred /tmp/pwstorage_db.xml && rm /tmp/pwstorage_db.xml
 }

@@ -58,7 +58,7 @@ opendir (DIR, ".") or die "$!";
 
 close DIR;
 
-print "\t[*] Done\n";
+print "[*] Done\n";
 
 exit (0);
 
