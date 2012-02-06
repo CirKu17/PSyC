@@ -5,7 +5,8 @@ Is written in perl (using the Template Toolkit) and the CLI is managed by zsh.
 Initialize
 ----------
 
-To start adding elements to the db, encrypt the empty pwstorage_db.xml in pwstorage_db.xml.gpg
+To start adding elements to the db, encrypt the empty pwstorage_db.xml in pwstorage_db.xml.gpg .
+
 Needs xml_grep and xclip (may need to be aliased to xclip -selection clipboard).
 
 Aliases
