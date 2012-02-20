@@ -14,7 +14,7 @@ function psyc-copy() {
         xml_grep "target[@id=\"$1\"]/passphrase" /tmp/pwstorage_db.xml --strict --text_only | xclip
     fi
 
-    shred /tmp/pwstorage_db.xml && rm /tmp/pwstorage_db.xml
+    shred -u /tmp/pwstorage_db.xml
 }
 
 function psyc-add() {
@@ -24,7 +24,7 @@ function psyc-add() {
     perl pwstorage.pl
     gpg --yes -o $PSYCPATH/pwstorage_db.xml.gpg -e -R $PSYCHOPATH /tmp/pwstorage_db.xml
     $OLDPWD
-    shred /tmp/pwstorage_db.xml && rm /tmp/pwstorage_db.xml
+    shred -u /tmp/pwstorage_db.xml
 }
 
 function psyc-mod() {
@@ -32,7 +32,7 @@ function psyc-mod() {
     gpg --yes -o /tmp/pwstorage_db.xml -d $PSYCPATH/pwstorage_db.xml.gpg
     nano /tmp/pwstorage_db.xml
     gpg --yes -o $PSYCPATH/pwstorage_db.xml.gpg -e -R $PSYCHOPATH /tmp/pwstorage_db.xml
-    shred /tmp/pwstorage_db.xml && rm /tmp/pwstorage_db.xml
+    shred -u /tmp/pwstorage_db.xml
 }
 
 alias psyc-see='gpg -d $PSYCPATH/pwstorage_db.xml.gpg | less '
